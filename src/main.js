@@ -5,9 +5,16 @@ import './theme/index.css'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import axios from 'axios';//加这句引用
+
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+//把 `axios` 加到 `Vue` 的原型中
+Vue.prototype.axios = axios;
+
+axios.defaults.baseURL = "http://127.0.0.1:7777/"
+// axios.defaults.headers = {"X-Requested-With": "XMLHttpRequest"}
 
 new Vue({
   router,
