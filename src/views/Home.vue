@@ -27,13 +27,24 @@ export default {
       info: null
     }
   },
-  // mounted () {
-  //   this.axios
-  //     .get('/search')
-  //     .then(response => (this.info = response))
-  //     .catch(function (error) { // 请求失败处理
-  //       console.log(error);
-  //     });
-  // }
+  mounted () {
+    // this.axios
+    //   .get('/search')
+    //   .then(response => (this.info = response))
+    //   .catch(function (error) { // 请求失败处理
+    //     console.log(error);
+    //   });
+    this.axios
+      .get('api/detail/')
+      .then(response => {
+        console.log("获取结果");
+        console.log(response);
+        this.info = response.data;
+        // console.log(this.string_from_api);
+      })
+      .catch(function (error) { // 请求失败处理
+        console.log(error);
+      })
+  }
 }
 </script>
