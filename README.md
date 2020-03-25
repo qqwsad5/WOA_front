@@ -1,8 +1,14 @@
 # nginx + vuecli3 + uwsgi + django 实现前后端分离的网页部署
 
-超多坑和bug
+超多坑和bug，真是麻烦
 
-## npm 相关
+## 1. 安装工具
+
+除了npm，感觉都用 pip3 安装比较好，因为安装完是python3版本的\
+即 nginx + uwsgi + django
+
+## 2. npm 相关
+
 npm 过慢换代理，之后使用 cnpm 命令替代 npm 命令来安装包
 ```
 npm install cnpm -g
@@ -11,8 +17,18 @@ npm install cnpm -g
 ```
 npm i 包名 -S
 ```
+这样只用使用命令 cnpm install 即可装好所有依赖包
 
-## vuecli3的路径
+本地测试用
+```
+npm run serve
+```
+服务器上用生成的镜像，然后使用 nginx 做路由到该镜像
+```
+npm run build
+```
+
+## 3. vuecli3的路径
 
 在根目录添加 vue.config.js 文件
 
@@ -23,7 +39,24 @@ module.exports = {
 ```
 之后 npm run build 就能生成所需的 dist
 
-## 跨域问题
+## 4. axios请求路径配置
+
+安装完axios包后，在 main.js 中加入该包\
+无法使用 Vue.use() 来全局应用，因此必须使用 Vue.prototype\
+这样在具体使用的地方，用 this.axios 即可
+```
+import axios from 'axios';
+
+Vue.prototype.axios = axios;
+```
+最后配置一下默认的 baseURL，即在发送http请求时的根目录\
+注意在与后端交互时，http请求的ip必须为外网访问服务器的ip，因为该ip是从用户的浏览器发出来的
+```
+axios.defaults.baseURL = "http://123.56.170.97:7777/"
+```
+
+
+## 5. 跨域问题
 
 只需要在 django 的 setting 文件里配置就行
 
@@ -59,7 +92,13 @@ INSTALLED_APPS = [
 CORS_ORIGIN_ALLOW_ALL = True  # 新增的跨域访问设置
 ```
 
-## uwsgi配置
+## 6. uwsgi配置
+
+首先安装 uwsgi
+```
+pip3 install uwsgi 
+```
+
 在 django 根目录下添加配置文件 uwsgi.ini
 ```
 [uwsgi]
@@ -75,7 +114,13 @@ socket：指定端口\
 chdir：根目录路径\
 module：指定 HelloWorld 包下的 wsgi 模块
 
-## nginx配置
+配置结束后，在 uwsgi.ini 目录下利用如下命令即可打开 uwsgi
+```
+uwsgi --ini uwsgi.ini
+```
+这样就应该可以访问了，不需要再 runserver 了
+
+## 7. nginx配置
 
 相当于是一个路由，将对固定端口的访问路由到应该去的地方
 
@@ -94,7 +139,7 @@ server {
 }
 server {
         listen       7777;
-        server_name  127.0.0.1;  # 
+        server_name  localhost;  # 从外部访问服务器的7777端口，得到后端数据
 
         location / {
             include uwsgi_params;
