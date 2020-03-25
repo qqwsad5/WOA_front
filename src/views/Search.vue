@@ -39,17 +39,17 @@ export default {
     getData(){
       this.searchData = [];
       this.searchData.push({
-          title:"标题1",
-          abstract:"这个谣言主要描述了一个什么现象1"
+          title:"蚊虫或成第三宿主",
+          abstract:"天热了，蚊子或成新冠病毒第三宿主"
         });
-      this.searchData.push({
-          title:"标题2",
-          abstract:"这个谣言主要描述了一个什么现象2"
-        });
-      this.searchData.push({
-          title:"标题3",
-          abstract:"这个谣言主要描述了一个什么现象3"
-        });
+      // this.searchData.push({
+      //     title:"标题2",
+      //     abstract:"这个谣言主要描述了一个什么现象2"
+      //   });
+      // this.searchData.push({
+      //     title:"标题3",
+      //     abstract:"这个谣言主要描述了一个什么现象3"
+      //   });
     }
   },
   computed:{

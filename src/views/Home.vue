@@ -4,7 +4,7 @@
     <br/>
     <SearchBox/>
     <div id="app">
-    {{ info }}
+      {{info}}
     </div>
     <div>
     ???
