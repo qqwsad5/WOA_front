@@ -7,7 +7,7 @@
       {{info}}
     </div>
     <div>
-    ???
+      ???
     </div>
   </div>
 </template>
@@ -27,13 +27,13 @@ export default {
       info: null
     }
   },
-  mounted () {
-    this.axios
-      .get('/search')
-      .then(response => (this.info = response))
-      .catch(function (error) { // 请求失败处理
-        console.log(error);
-      });
-  }
+  // mounted () {
+  //   this.axios
+  //     .get('/search')
+  //     .then(response => (this.info = response))
+  //     .catch(function (error) { // 请求失败处理
+  //       console.log(error);
+  //     });
+  // }
 }
 </script>
