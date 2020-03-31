@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img alt="Vue logo" src="../assets/11.png" style="max-height: 200px; margin:50px">
     <br/>
     <SearchBox/>
     <div id="app">

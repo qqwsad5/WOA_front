@@ -1,6 +1,20 @@
 <template>
     <div class="searchbox">
-        <input v-model="searchText"><button @click="search" class="test-one">搜索</button>
+        <el-input 
+          v-model="searchText"
+          placeholder="请输入搜索内容"
+          maxlength="10"
+          show-word-limit
+          style="max-width:200px"
+          @keyup.enter.native="search">
+        </el-input>
+        <el-button 
+          type="primary"
+          icon="el-icon-search"
+          @click="search"
+          style="margin-left: 10px">
+          搜索
+        </el-button>
     </div>
 </template>
 
@@ -9,7 +23,7 @@ export default {
   name: 'SearchBox',
   data: function () {
     return {
-      searchText:"请输入搜索内容"
+      searchText:""
     }
   },
   methods:{
@@ -20,6 +34,9 @@ export default {
         search:this.searchText
       }
       });
+    },
+    check(){
+      console.log("获取结果");
     }
   }
 }

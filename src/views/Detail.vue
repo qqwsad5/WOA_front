@@ -1,6 +1,5 @@
 <template>
   <div class="detail">
-    <h1>This is a detail page</h1>
     <h1>谣言标题为：{{this.params.title}}</h1>
     <div class="timeline">
         <el-timeline>

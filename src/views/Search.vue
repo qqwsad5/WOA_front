@@ -1,6 +1,5 @@
 <template>
   <div class="search">
-    <h1>This is a search page</h1>
     <SearchBox/>
     <h1>搜索内容：
       <a v-if="this.params.search == null">无输入</a>
