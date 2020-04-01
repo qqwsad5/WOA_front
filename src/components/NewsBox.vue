@@ -1,6 +1,6 @@
 <template>
   <div class="newsbox" @click="detail()">
-    <div>{{title}},简介：{{abstract}}</div>
+    <div>谣言id：{{id}},简介：{{abstract}}</div>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: 'NewsBox',
   props: {
-    title: String,
+    id: String,
     abstract: String
   },
   methods:{
@@ -16,7 +16,7 @@ export default {
       this.$router.push({
       path:"/detail",
       query:{
-        title:this.title
+        id:this.id
       }
       });
     }

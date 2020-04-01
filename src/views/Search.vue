@@ -8,9 +8,9 @@
     </h1>
 
     <!-- 简单列表显示搜到的谣言 -->
-    <ul v-for="(item,index) in searchData" v-bind:key="index">
-      <NewsBox v-bind:title="item.title" v-bind:abstract="item.abstract"/>
-    </ul>
+    <div v-for="(value, id, index) in searchData" v-bind:key="index">
+      <NewsBox v-bind:id="id" v-bind:abstract="value"/>
+    </div>
 
     <h1>{{currentTime}}</h1>
   </div>
@@ -29,31 +29,39 @@ export default {
   },
   data: function () {
     return {
-      searchData:[],
+      searchData:Object,
       timer: "",//定义一个定时器的变量
       currentTime: "" // 获取当前时间
     }
   },
   methods:{
     getData(){
-      this.searchData = [];
-      this.searchData.push({
-          title:"蚊虫或成第三宿主",
-          abstract:"天热了，蚊子或成新冠病毒第三宿主"
-        });
-      // this.searchData.push({
-      //     title:"标题2",
-      //     abstract:"这个谣言主要描述了一个什么现象2"
-      //   });
-      // this.searchData.push({
-      //     title:"标题3",
-      //     abstract:"这个谣言主要描述了一个什么现象3"
-      //   });
+      
+      this.axios
+      .get('api/search/?keyword='+this.params.search)
+      .then(response => {
+        console.log("获取结果");
+        console.log(response);
+        this.searchData = response.data;
+        // console.log(this.string_from_api);
+      })
+      .catch(function (error) { // 请求失败处理
+        console.log(error);
+        console.log(error.config);
+      })
+
     }
   },
+
   computed:{
     params: function(){ //传入的搜索参数
       return this.$route.query;  //传入搜索参数
+    }
+  },
+
+  watch:{
+    params: function(){ //参数变化时重新获取数据
+      this.getData();
     }
   },
 
@@ -61,8 +69,6 @@ export default {
     var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
     _this.getData();  //更新数据
     this.timer = setInterval(function() {
-
-      _this.getData();  //更新数据
 
       _this.currentTime = //修改数据date
         new Date().getFullYear() +
