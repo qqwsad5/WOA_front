@@ -35,7 +35,7 @@ export default {
     //     console.log(error);
     //   });
     this.axios
-      .get('api/detail/')
+      .get('api/test/')
       .then(response => {
         console.log("获取结果");
         console.log(response);
