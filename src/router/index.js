@@ -30,6 +30,12 @@ const routes = [
     component: () => import('../views/Detail.vue')
   },
   {
+    path: '/recommend',
+    name: 'Recommend',
+    // component: Home
+    component: () => import('../views/Recommend.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

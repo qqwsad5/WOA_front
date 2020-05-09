@@ -31,10 +31,13 @@ export default {
     margin-top: 5%;
     margin-bottom: 5%;
     border-radius: 4px;
-    background-color: gray;
+    border: 1px solid;
+    border-color: #409EFF;
+    background-color: #ffffff;
     text-align: center;
-    color: #fff;
+    color: #000000;
     padding: 40px 20px;
     box-sizing: border-box;
+    cursor: pointer;
   }
 </style>

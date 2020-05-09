@@ -7,11 +7,16 @@ import router from './router'
 import store from './store'
 import axios from 'axios';//加这句引用
 
+import echarts from 'echarts'
+
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 //把 `axios` 加到 `Vue` 的原型中
 Vue.prototype.axios = axios;
+
+Vue.prototype.echarts = echarts;
+require('echarts-wordcloud');
 
 axios.defaults.baseURL = "http://123.56.170.97:7777/"
 // axios.defaults.headers = {"X-Requested-With": "XMLHttpRequest"}

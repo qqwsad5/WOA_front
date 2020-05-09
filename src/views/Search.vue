@@ -1,31 +1,35 @@
 <template>
   <div class="search">
-    <SearchBox/>
-    <h1>搜索内容：
+    <!-- <SearchBox/> -->
+    <h1 style="text-align : left">
+      关键词：
       <a v-if="this.params.search == null">无输入</a>
       <a v-else-if="this.params.search == ''">无输入</a>
       <a v-else>{{this.params.search}}</a>
     </h1>
+    <div style="text-align : left">
+      <h3 v-if="Object.keys(this.searchData).length == 0">对不起，我们未能在数据库中发现相关谣言，您可以尝试更换其他关键词搜索</h3>
+      <h2 v-else>发现了 {{Object.keys(this.searchData).length}} 条相关谣言</h2>
+    </div>
+
 
     <!-- 简单列表显示搜到的谣言 -->
     <div v-for="(value, id, index) in searchData" v-bind:key="index">
       <NewsBox v-bind:id="id" v-bind:abstract="value"/>
     </div>
 
-    <h1>{{currentTime}}</h1>
+    <!-- <h1>{{currentTime}}</h1> -->
   </div>
 </template>
 
 <script>
 
-import SearchBox from '@/components/SearchBox.vue'
 import NewsBox from '@/components/NewsBox.vue'
 
 export default {
   name: 'Search',
   components: {
     NewsBox,
-    SearchBox
   },
   data: function () {
     return {
@@ -56,7 +60,7 @@ export default {
   computed:{
     params: function(){ //传入的搜索参数
       return this.$route.query;  //传入搜索参数
-    }
+    },
   },
 
   watch:{
