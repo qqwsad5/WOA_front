@@ -7,7 +7,7 @@
       <a v-else-if="this.params.search == ''">无输入</a>
       <a v-else>{{this.params.search}}</a>
     </h1>
-    <div style="text-align : left">
+    <div style="text-align : left; margin-bottom: 30px;">
       <h3 v-if="Object.keys(this.searchData).length == 0">对不起，我们未能在数据库中发现相关谣言，您可以尝试更换其他关键词搜索</h3>
       <h2 v-else>发现了 {{Object.keys(this.searchData).length}} 条相关谣言</h2>
     </div>

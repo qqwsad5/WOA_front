@@ -2,7 +2,7 @@
   <div class="detail">
     <!-- <h1>谣言id为：{{this.params.id}}</h1> -->
     <el-row style="margin-top: 20px">
-      <el-col :span="12"><div class="grid-content bg-purple">谣言id为：{{this.params.id}}</div></el-col>
+      <el-col :span="12"><div>谣言id：{{this.params.id}}</div></el-col>
       <el-col :span="12">
         <div>
           <el-radio-group v-model="radio" size="medium">
@@ -54,7 +54,7 @@ export default {
       .then(response => {
         console.log("获取结果");
         console.log(response);
-        this.detailData = response.data;
+        this.detailData = response.data[1];
         // console.log(this.string_from_api);
       })
       .catch(function (error) { // 请求失败处理
